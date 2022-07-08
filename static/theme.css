@@ -1,0 +1,33 @@
+html, body {
+    font-size: 20px;
+    font-family: monospace;
+    background: #333333;
+    color: #00FF00;
+    line-height: 1.25;
+    margin: auto;
+    padding: 20px;
+    max-width: 640px;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.box {
+    border-style: solid;
+    color: #00FF00;
+    padding: 24px;
+}
+
+.flashes {
+    background-color: #000000;
+}
+
+#sortable li {
+    background-color: #000000;
+    color: #00FF00;
+    text-align: left;
+}

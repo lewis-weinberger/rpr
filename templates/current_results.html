@@ -1,0 +1,21 @@
+<div class="box">
+    <h1>Group preferences</h1>
+    {% if final |length == 0 %}
+        <img src="{{ url_for('static', filename='calculating.gif') }}" alt="Calculating">
+    {% else %}
+        <ul>
+        {% for choice in final %}
+            <li style="text-align: left;">{{ loop.index }}. {{ choice }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+<br>
+<div class="box">
+    <h2>Users finished</h2>
+    <ul>
+    {% for user in finished %}
+        <li>{{ user }}</li>
+    {% endfor %}
+    </ul>
+</div>

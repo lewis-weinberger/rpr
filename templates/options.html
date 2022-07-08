@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="box">
+    {% if "options" in session %}
+    <h1>Your choices</h1>
+    <ul>
+    {% for option in session["options"] %}
+        <li>{{ option }}</li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <h1>Enter your desired options</h1>
+    <form method="POST">
+        {{ form.choices() }}
+        <input type="submit" value="Submit">
+    </form>
+    {% endif %}
+    </div>
+    <br>
+    <div id="ready-users">
+        {% include "ready_users.html" %}
+    </div>
+    <script>
+        // Reload ready users every 3 seconds
+        const ready_url = {{ url_for("ready_users")|tojson }}
+        const ready_div = document.getElementById("ready-users")
+        setInterval(async function() {
+            await fetch(ready_url)
+                .then(response => response.text())
+                .then(html => ready_div.innerHTML = html)
+        }, 3000);
+    </script>
+{% endblock %}

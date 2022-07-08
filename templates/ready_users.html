@@ -1,0 +1,15 @@
+<div class="box">
+    <h2>Users ready</h2>
+    <ul>
+    {% for user, choices in users.items() %}
+        {% if choices |length > 0 %}
+        <li>{{ user }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <br>
+    <p>When all users are ready:</p>
+    <form action="{{ url_for('rank') }}">
+        <input type="submit" value="Rank">
+    </form>
+</div>

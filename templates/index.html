@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="box">
+    <h1>Enter your name</h1>
+    <form method="POST">
+        {{ form.user() }}
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+    <br>
+    <div class="box">
+    <h2>How to use</h2>
+    <ol>
+    <li style="text-align: left;">Choose a username</li>
+    <li style="text-align: left;">Input desired options to be considered</li>
+    <li style="text-align: left;">When all users are ready, press <button>Rank</button></li>
+    <li style="text-align: left;">Rank your preferences from the pool of options</li>
+    <li style="text-align: left;">View the aggregated ranking in real time as users submit their preferences</li>
+    </ol>
+    </div>
+{% endblock %}

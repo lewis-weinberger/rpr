@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+    $(function() {
+        $("#sortable").sortable({
+            update: function(event, ui) {
+                // update index in span
+                $("#sortable span").each(function (i) {
+                    $(this).text(i + 1);
+                });
+
+                // POST updated order back to /rank
+                var updated = $(this).sortable("serialize");
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url_for('rank') }}",
+                    contentType: "application/json",
+                    data: JSON.stringify(updated)
+                });
+            }
+        });
+    });
+    </script>
+    <div class="box">
+    <h1>Rank your preferences in descending order</h1>
+    <ul id="sortable">
+    {% for option in all_options %}
+        <li class="ui-state-default" id="item_{{ loop.index0 }}"><span>{{ loop.index }}</span> {{ option }}</li>
+    {% endfor %}
+    </ul>
+    <br>
+    <form action="{{ url_for('results') }}">
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

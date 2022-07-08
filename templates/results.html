@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div id="current-results">
+        {% include "current_results.html" %}
+    </div>
+    <script>
+        // Reload current results every 3 seconds
+        const results_url = {{ url_for("current_results")|tojson }}
+        const results_div = document.getElementById("current-results")
+        setInterval(async function() {
+            await fetch(results_url)
+                .then(response => response.text())
+                .then(html => results_div.innerHTML = html)
+        }, 3000);
+    </script>
+{% endblock %}
